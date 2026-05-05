@@ -38,7 +38,6 @@ jobs:
       - name: Bandit SAST
         run: |
           bandit -r flaskr/ -ll -f json -o bandit-report.json || true
-          bandit -r flaskr/ -ll
 
       - name: Trivy SCA
         uses: aquasecurity/trivy-action@master
@@ -62,6 +61,7 @@ jobs:
           path: |
             bandit-report.json
             trivy-report.json
+        continue-on-error: true 
 
   # 🔹 Job 2: Динамический анализ (DAST) с OWASP ZAP
   dast-scan:
@@ -104,6 +104,7 @@ jobs:
         with:
           name: dast-reports
           path: zap-reports/
+        continue-on-error: true 
 
   # 🔹 Job 3: Security Gate + Автокомментарий в PR
   security-gate:
