@@ -103,8 +103,10 @@ jobs:
         if: always()
         with:
           name: dast-reports
-          path: zap-reports/
-        continue-on-error: true 
+          path: |
+            zap-reports/*.json
+            zap-reports/*.html
+          retention-days: 5
 
   # 🔹 Job 3: Security Gate + Автокомментарий в PR
   security-gate:
