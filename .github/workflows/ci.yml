@@ -30,7 +30,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -e .
-          pip install bandit pytest flake8
+          pip install pytest flake8 pbr
 
       # 4. Unit tests
       - name: Run unit tests
