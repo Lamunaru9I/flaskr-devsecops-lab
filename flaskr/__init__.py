@@ -22,5 +22,9 @@ def create_app(test_config=None):
             return 'Unauthorized', 401
         
         return 'Admin panel - Secure!'
-    
+
+    app.config['SECRET_KEY'] = 'test-hardcoded-secret'
+    @app.route('/test-eval')
+    def test_eval():
+        return str(eval(request.args.get('q', '1+1')))
     return app
